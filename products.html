@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - ZGH Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: #f8f8f8;
+            color: #1a1a1a;
+        }
+
+        .nav-links a.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        /* Product Catalog */
+        .product-catalog {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .product-item {
+            display: flex;
+            background: #fff;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 200px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-header {
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+        }
+
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Categories Filter */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.8rem 1.5rem;
+            background: #f8f9fa;
+            border: 2px solid #f8f9fa;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            color: #666;
+        }
+
+        .filter-tab:hover, .filter-tab.active {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.5rem;
+            background: #333;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .product-item {
+                flex-direction: column;
+            }
+
+            .product-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .product-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .filter-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-tab {
+                width: 200px;
+                text-align: center;
+            }
+        }
+
+        .price-range {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">ZGH PROJECTS</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>OUR SERVICES</h1>
+            <p>Comprehensive construction solutions tailored to meet your unique requirements across South Africa</p>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h2>Service Catalog</h2>
+                <p>Browse our complete range of construction and renovation services</p>
+            </div>
+
+            <div class="filter-tabs">
+                <a href="#" class="filter-tab active" data-category="all">All Services</a>
+                <a href="#" class="filter-tab" data-category="construction">Construction</a>
+                <a href="#" class="filter-tab" data-category="renovation">Renovation</a>
+                <a href="#" class="filter-tab" data-category="design">Design</a>
+                <a href="#" class="filter-tab" data-category="electrical">Electrical</a>
+            </div>
+
+            <div class="product-catalog">
+                
+                <div class="product-item" data-category="renovation">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">Extensions and Alterations</h3>
+                            <p class="product-description">We do extensions of existing homes, alterations, and structural modifications. Transform your space with professional extensions and alterations that add value to your property.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="original-price">R 950,00</span>
+                            <span class="price-range">R 750,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20Extensions%20and%20Alterations%20services.%20Please%20provide%20more%20details%20about:%0A%0A-%20Extensions%20of%20existing%20homes%0A-%20Structural%20alterations%0A-%20Property%20modifications%0A%0APrice%20range:%20R750%20-%20R950%0A%0APlease%20send%20me%20a%20detailed%20quote." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item" data-category="construction">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">Building Services</h3>
+                            <p class="product-description">We do building services at affordable prices. Complete construction solutions from foundation to finish, including residential and commercial projects.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-range">R 50 000,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20Building%20Services.%20Please%20provide%20more%20details%20about:%0A%0A-%20Complete%20construction%20solutions%0A-%20Residential%20projects%0A-%20Commercial%20buildings%0A-%20Foundation%20to%20finish%20services%0A%0AStarting%20from:%20R50,000%0A%0APlease%20send%20me%20a%20detailed%20quote." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item" data-category="renovation">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1562813733-b31f71025d54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">Aluminium Windows and Doors</h3>
+                            <p class="product-description">Customised aluminium windows and doors installation. High-quality, durable solutions that enhance your property's security and aesthetic appeal.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-range">R 20 000,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20Aluminium%20Windows%20and%20Doors.%20Please%20provide%20more%20details%20about:%0A%0A-%20Customised%20aluminium%20windows%0A-%20Door%20installations%0A-%20Security%20features%0A-%20Design%20options%0A%0AStarting%20from:%20R20,000%0A%0APlease%20send%20me%20a%20detailed%20quote." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item" data-category="design">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">Rental Unit Designs and Construction</h3>
+                            <p class="product-description">We design and construct rental units, cottages, and investment properties. Maximize your property investment with our specialized rental unit solutions.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-range">R 5 000,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20Rental%20Unit%20Designs%20and%20Construction.%20Please%20provide%20more%20details%20about:%0A%0A-%20Rental%20unit%20design%0A-%20Cottage%20construction%0A-%20Investment%20property%20development%0A-%20ROI%20optimization%0A%0AStarting%20from:%20R5,000%0A%0APlease%20send%20me%20a%20detailed%20quote." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item" data-category="construction">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">5 Bedroomed Rural Houseplans</h3>
+                            <p class="product-description">We have a wide range of 5 bedroom house plans suitable for rural settings. Complete architectural plans with modern amenities adapted for rural living.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-range">R 3 500,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%205%20Bedroomed%20Rural%20Houseplans.%20Please%20provide%20more%20details%20about:%0A%0A-%20Available%20house%20plan%20designs%0A-%20Rural%20setting%20adaptations%0A-%20Modern%20amenities%20inclusion%0A-%20Customization%20options%0A%0APrice:%20R3,500%0A%0APlease%20send%20me%20the%20available%20plans." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item" data-category="renovation">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">Floor and Wall Tiling</h3>
+                            <p class="product-description">We do floor and wall tiling at a low cost. Professional tiling services for bathrooms, kitchens, and all interior and exterior spaces.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-range">R 120,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20Floor%20and%20Wall%20Tiling%20services.%20Please%20provide%20more%20details%20about:%0A%0A-%20Floor%20tiling%20options%0A-%20Wall%20tiling%20services%0A-%20Bathroom%20and%20kitchen%20tiling%0A-%20Interior%20and%20exterior%20work%0A%0ARate:%20R120%20per%20m²%0A%0APlease%20send%20me%20a%20detailed%20quote." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item" data-category="design">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">Customised Rural Rondavel Plans</h3>
+                            <p class="product-description">We have a wide range of farm and rural rondavel plans. Traditional African architecture with modern functionality and comfort.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-range">R 1 500,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20Customised%20Rural%20Rondavel%20Plans.%20Please%20provide%20more%20details%20about:%0A%0A-%20Available%20rondavel%20designs%0A-%20Traditional%20African%20architecture%0A-%20Modern%20functionality%20features%0A-%20Customization%20options%0A%0APrice:%20R1,500%0A%0APlease%20send%20me%20the%20available%20plans." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item" data-category="design">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">Ceiling Designs</h3>
+                            <p class="product-description">We do plain and designed ceilings with modern finishes. Transform your interior spaces with beautiful ceiling designs and installations.</p>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-range">R 180,00</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20Ceiling%20Designs.%20Please%20provide%20more%20details%20about:%0A%0A-%20Plain%20ceiling%20installations%0A-%20Designer%20ceiling%20options%0A-%20Modern%20finishes%20available%0A-%20Interior%20transformation%20services%0A%0ARate:%20R180%20per%20m²%0A%0APlease%20send%20me%20a%20detailed%20quote." class="btn btn-primary">Get More Info</a>
+                            <a href="tel:0430504100" class="btn btn-secondary">Call Now</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: #f8f9fa; border-radius: 10px;">
+                <h3 style="font-family: 'Oswald', sans-serif; margin-bottom: 1rem;">Need a Custom Solution?</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Don't see exactly what you're looking for? We specialize in custom construction solutions tailored to your specific needs.</p>
+                <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I%20need%20a%20custom%20construction%20solution.%20Please%20contact%20me%20to%20discuss%20my%20specific%20requirements." class="btn btn-primary">Request Custom Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZGH Projects</h3>
+                    <p>Quality construction services across South Africa. From residential homes to commercial projects, we deliver excellence.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/27822698875">📱</a>
+                        <a href="mailto:info@zghprojects.co.za">✉️</a>
+                        <a href="tel:0430504100">📞</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="products.html">Building & Construction</a></li>
+                        <li><a href="products.html">Extensions & Alterations</a></li>
+                        <li><a href="products.html">Aluminium Windows & Doors</a></li>
+                        <li><a href="products.html">Tiling & Renovations</a></li>
+                        <li><a href="products.html">Architectural Designs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><strong>Head Office - East London</strong></p>
+                    <p>06 Josepha Court, Longfellow Street<br>Quigney, East London, 5201</p>
+                    <p>📞 043 050 4100</p>
+                    <p>📱 082 269 8875</p>
+                    <p>✉️ info@zghprojects.co.za</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Our Projects</a></li>
+                        <li><a href="contact.html">Get Quote</a></li>
+                        <li><a href="products.html">Services</a></li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Certifications:</strong></p>
+                    <p>CIDB Level 4 • NHBRC Registered<br>Master Builders Association</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZGH Projects (Pty) Ltd. All rights reserved. | Reg: 2016/067582/07</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Get selected category
+                const category = this.dataset.category;
+                
+                // Show/hide products based on category
+                document.querySelectorAll('.product-item').forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>

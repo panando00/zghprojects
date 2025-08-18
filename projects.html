@@ -4,546 +4,728 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Projects - ZGH Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             color: #333;
+            background-color: #ffffff;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
-        
-        .header-content {
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
-        
+
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+            letter-spacing: 2px;
         }
-        
-        nav ul {
-            list-style: none;
+
+        .nav-links {
             display: flex;
+            list-style: none;
             gap: 2rem;
         }
-        
-        nav a {
+
+        .nav-links a {
             text-decoration: none;
-            color: white;
-            font-weight: 600;
+            color: #333;
+            font-weight: 500;
             padding: 0.5rem 1rem;
-            border-radius: 25px;
+            border-radius: 5px;
             transition: all 0.3s ease;
+            position: relative;
         }
-        
-        nav a:hover, nav a.active {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
+
+        .nav-links a:hover {
+            background: #f8f8f8;
+            color: #1a1a1a;
         }
-        
+
+        .nav-links a.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
         /* Hero Section */
         .hero {
             height: 60vh;
-            background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f5f5f5" width="1200" height="400"/><text x="600" y="180" font-family="Arial" font-size="36" fill="%23ccc" text-anchor="middle">Projects Hero Image</text><text x="600" y="220" font-family="Arial" font-size="18" fill="%23999" text-anchor="middle">Completed Projects Gallery</text></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             color: white;
-            margin-top: 70px;
+            text-align: center;
+            margin-top: 80px;
         }
-        
+
         .hero-content h1 {
+            font-family: 'Oswald', sans-serif;
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
         }
-        
+
         .hero-content p {
             font-size: 1.3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            max-width: 600px;
         }
-        
+
         /* Main Content */
-        main {
+        .main-content {
             padding: 4rem 0;
-            background: #f8f9fa;
         }
-        
-        .section-title {
+
+        .page-header {
             text-align: center;
-            font-size: 2.5rem;
-            color: #764ba2;
             margin-bottom: 3rem;
         }
-        
+
+        .page-header h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        /* Project Gallery */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin-bottom: 3rem;
         }
-        
+
         .project-card {
-            background: white;
+            background: #fff;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
-        
+
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
-        
+
         .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
             position: relative;
             overflow: hidden;
         }
-        
-        .project-image::before {
-            content: '';
+
+        .project-badge {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("images/hero.jpeg");
-            background-size: cover;
-            opacity: 0.3;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
-        
+
         .project-content {
             padding: 2rem;
         }
-        
+
         .project-title {
-            color: #764ba2;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-        
-        .project-details {
-            margin-bottom: 1rem;
-        }
-        
-        .project-detail {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #1a1a1a;
             margin-bottom: 0.5rem;
+        }
+
+        .project-client {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-details {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .project-detail strong {
-            color: #667eea;
-            min-width: 80px;
-        }
-        
-        .project-value {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-top: 1rem;
+            margin-bottom: 1.5rem;
             padding: 1rem;
             background: #f8f9fa;
-            border-radius: 10px;
-            text-align: center;
+            border-radius: 8px;
         }
-        
-        .project-category {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
+
+        .project-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .project-year {
+            color: #666;
             font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 1rem;
         }
-        
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
             padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
             text-decoration: none;
-            display: inline-block;
-            font-weight: bold;
-            transition: all 0.3s ease;
             cursor: pointer;
-            margin-top: 1rem;
-        }
-        
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-        
-        .stats-section {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 4rem 0;
+            transition: all 0.3s ease;
+            display: inline-block;
             text-align: center;
-            margin: 4rem 0;
+            flex: 1;
         }
-        
+
+        .btn-primary {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+        }
+
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Stats Section */
+        .projects-stats {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 3rem 0;
+            margin: 4rem 0;
+            border-radius: 15px;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            text-align: center;
         }
-        
+
         .stat-item h3 {
-            font-size: 3rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            color: #fff;
         }
-        
+
         .stat-item p {
-            font-size: 1.2rem;
+            font-size: 1rem;
+            opacity: 0.9;
         }
-        
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            position: relative;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            font-family: 'Oswald', sans-serif;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.8rem 1.5rem;
+            background: #f8f9fa;
+            border: 2px solid #f8f9fa;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            color: #666;
+        }
+
+        .filter-tab:hover, .filter-tab.active {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+            color: #fff;
+        }
+
         /* Footer */
         footer {
-            background: #2c3e50;
-            color: white;
+            background: #1a1a1a;
+            color: #fff;
             padding: 3rem 0 1rem;
         }
-        
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
-        
+
         .footer-section h3 {
-            color: #667eea;
+            font-family: 'Oswald', sans-serif;
             margin-bottom: 1rem;
+            color: #fff;
         }
-        
-        .footer-section p, .footer-section li {
-            margin-bottom: 0.5rem;
-        }
-        
+
         .footer-section ul {
             list-style: none;
         }
-        
-        .footer-section a {
-            color: #bdc3c7;
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
-        .footer-section a:hover {
-            color: #667eea;
+
+        .footer-section ul li a:hover {
+            color: #fff;
         }
-        
+
         .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .social-links a {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #667eea;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            padding: 0.5rem;
+            background: #333;
+            border-radius: 5px;
+            text-decoration: none;
             transition: all 0.3s ease;
         }
-        
+
         .social-links a:hover {
-            background: #764ba2;
-            transform: translateY(-3px);
+            background: #555;
+            transform: translateY(-2px);
         }
-        
+
         .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #34495e;
-            color: #bdc3c7;
+            color: #ccc;
         }
-        
-        /* Mobile Responsive */
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
+            .nav-links {
+                display: none;
             }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-            
-            .hero {
-                margin-top: 120px;
-                height: 50vh;
-            }
-            
+
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
-            
-            .section-title {
-                font-size: 2rem;
+
+            .project-actions {
+                flex-direction: column;
             }
-            
-            .stat-item h3 {
-                font-size: 2rem;
+
+            .filter-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-tab {
+                width: 200px;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+
+            .modal-header {
+                height: 200px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">ZGH PROJECTS</div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="projects.html" class="active">Projects</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <nav class="container">
+            <a href="index.html" class="logo">ZGH PROJECTS</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Services</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Our Projects</h1>
-            <p>Showcasing quality construction across South Africa</p>
+            <h1>OUR PROJECTS</h1>
+            <p>Showcasing our commitment to excellence through completed construction projects across South Africa</p>
         </div>
     </section>
 
-    <main>
+    <section class="main-content">
         <div class="container">
-            <h2 class="section-title">Completed Projects</h2>
-            
+            <div class="page-header">
+                <h2>Project Gallery</h2>
+                <p>Browse through our portfolio of successfully completed projects</p>
+            </div>
+
+            <div class="filter-tabs">
+                <a href="#" class="filter-tab active" data-category="all">All Projects</a>
+                <a href="#" class="filter-tab" data-category="schools">Schools</a>
+                <a href="#" class="filter-tab" data-category="residential">Residential</a>
+                <a href="#" class="filter-tab" data-category="commercial">Commercial</a>
+                <a href="#" class="filter-tab" data-category="renovation">Renovations</a>
+            </div>
+
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">🏫</div>
+                
+                <div class="project-card" data-category="schools" onclick="openModal('siwali-admin')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2016</div>
+                    </div>
                     <div class="project-content">
-                        <div class="project-category">Educational</div>
-                        <h3 class="project-title">Siwali Senior Secondary School</h3>
+                        <h3 class="project-title">Siwali Senior Secondary Admin Block</h3>
+                        <p class="project-client">Client: Adopta School Foundation</p>
+                        <p class="project-description">Construction of a modern administration block for Siwali Senior Secondary School in Lusikisiki. The project included offices, meeting rooms, and reception areas with modern finishes.</p>
                         <div class="project-details">
-                            <div class="project-detail">
-                                <strong>📍 Location:</strong> Lusikisiki, Eastern Cape
-                            </div>
-                            <div class="project-detail">
-                                <strong>📅 Year:</strong> 2016
-                            </div>
-                            <div class="project-detail">
-                                <strong>👥 Client:</strong> Adopta School Foundation
-                            </div>
-                            <div class="project-detail">
-                                <strong>🔨 Scope:</strong> Administration Block, Classroom Renovations, Tiling
-                            </div>
+                            <span class="project-value">R 1,800,000.00</span>
+                            <span class="project-year">2016</span>
                         </div>
-                        <div class="project-value">Total Project Value: R 2,699,000</div>
-                        <a href="https://wa.me/27822698875?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20school%20construction%20projects%20like%20Siwali%20Senior%20Secondary.%20Please%20share%20more%20details." class="whatsapp-btn">💬 Similar Project Quote</a>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20learning%20more%20about%20the%20Siwali%20Senior%20Secondary%20Admin%20Block%20project.%20Can%20you%20provide%20more%20details%20about%20similar%20school%20construction%20projects?" class="btn btn-primary">Similar Project</a>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-image">🏘️</div>
+
+                <div class="project-card" data-category="schools" onclick="openModal('siwali-renovation')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2016</div>
+                    </div>
                     <div class="project-content">
-                        <div class="project-category">Residential</div>
-                        <h3 class="project-title">Double Storey Private House</h3>
+                        <h3 class="project-title">Siwali School Classroom Renovation</h3>
+                        <p class="project-client">Client: Adopta School Foundation</p>
+                        <p class="project-description">Complete renovation of 6 classrooms at Siwali Senior Secondary School, including new flooring, ceiling installations, electrical work, and modern educational fixtures.</p>
                         <div class="project-details">
-                            <div class="project-detail">
-                                <strong>📍 Location:</strong> Eastern Cape
-                            </div>
-                            <div class="project-detail">
-                                <strong>📅 Year:</strong> 2021-2022
-                            </div>
-                            <div class="project-detail">
-                                <strong>👥 Client:</strong> Mr Sinalo Ntabakazi
-                            </div>
-                            <div class="project-detail">
-                                <strong>🔨 Type:</strong> Complete Double Storey Construction
-                            </div>
+                            <span class="project-value">R 597,000.00</span>
+                            <span class="project-year">2016</span>
                         </div>
-                        <div class="project-value">Project Value: R 1,560,000</div>
-                        <a href="https://wa.me/27822698875?text=Hi%2C%20I%27m%20interested%20in%20a%20double%20storey%20house%20construction.%20Can%20you%20provide%20details%20similar%20to%20your%20R1%2C560%2C000%20project%3F" class="whatsapp-btn">💬 Get House Quote</a>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20classroom%20renovation%20services.%20Can%20you%20provide%20a%20quote%20for%20similar%20educational%20facility%20renovations?" class="btn btn-primary">Get Quote</a>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-image">🏡</div>
+
+                <div class="project-card" data-category="schools" onclick="openModal('siwali-tiling')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2016</div>
+                    </div>
                     <div class="project-content">
-                        <div class="project-category">Residential</div>
-                        <h3 class="project-title">Single Storey Villa Structure</h3>
+                        <h3 class="project-title">Siwali School Tiling Project</h3>
+                        <p class="project-client">Client: Adopta School Foundation</p>
+                        <p class="project-description">Professional tiling project at Siwali Senior Secondary School including floor and wall tiling in corridors, classrooms, and common areas with durable, easy-to-maintain finishes.</p>
                         <div class="project-details">
-                            <div class="project-detail">
-                                <strong>📍 Location:</strong> Mafikeng, North West
-                            </div>
-                            <div class="project-detail">
-                                <strong>📅 Year:</strong> 2021
-                            </div>
-                            <div class="project-detail">
-                                <strong>🔨 Type:</strong> Complete Villa Construction
-                            </div>
-                            <div class="project-detail">
-                                <strong>✨ Features:</strong> Modern Design, Quality Finishes
-                            </div>
+                            <span class="project-value">R 302,000.00</span>
+                            <span class="project-year">2016</span>
                         </div>
-                        <div class="project-value">Project Value: R 945,000</div>
-                        <a href="https://wa.me/27822698875?text=Hi%2C%20I%27d%20like%20information%20about%20single%20storey%20villa%20construction.%20Can%20you%20provide%20a%20quote%20similar%20to%20your%20Mafikeng%20project%3F" class="whatsapp-btn">💬 Villa Quote</a>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20your%20professional%20tiling%20services.%20Can%20you%20provide%20information%20about%20large-scale%20tiling%20projects?" class="btn btn-primary">Tiling Services</a>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-image">🏢</div>
+
+                <div class="project-card" data-category="residential" onclick="openModal('sinalo-house')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2022</div>
+                    </div>
                     <div class="project-content">
-                        <div class="project-category">Commercial</div>
+                        <h3 class="project-title">Double Storey House - Mr. Sinalo Ntabakazi</h3>
+                        <p class="project-client">Client: Private Residential</p>
+                        <p class="project-description">Construction of a luxurious double-storey family home featuring modern architecture, spacious living areas, multiple bedrooms, and contemporary finishes throughout.</p>
+                        <div class="project-details">
+                            <span class="project-value">R 1,560,000.00</span>
+                            <span class="project-year">2021-2022</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20building%20a%20double-storey%20house.%20Can%20you%20provide%20information%20about%20residential%20construction%20services%20and%20pricing?" class="btn btn-primary">Build My House</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="residential" onclick="openModal('mafikeng-villa')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2021</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Single Storey Villa - Mafikeng</h3>
+                        <p class="project-client">Client: Private Residential</p>
+                        <p class="project-description">Elegant single-storey villa in Mafikeng featuring open-plan living, modern kitchen, spacious bedrooms, and beautiful outdoor entertainment areas with quality finishes.</p>
+                        <div class="project-details">
+                            <span class="project-value">R 945,000.00</span>
+                            <span class="project-year">2021</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20building%20a%20single-storey%20villa.%20Can%20you%20provide%20details%20about%20your%20residential%20construction%20services?" class="btn btn-primary">Villa Construction</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="commercial" onclick="openModal('brava-engineers')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2021</div>
+                    </div>
+                    <div class="project-content">
                         <h3 class="project-title">Brava Engineers Complex</h3>
+                        <p class="project-client">Client: Brava Engineers</p>
+                        <p class="project-description">Modern commercial complex in Lusikisiki featuring office spaces, meeting rooms, technical facilities, and parking areas designed for engineering operations and client services.</p>
                         <div class="project-details">
-                            <div class="project-detail">
-                                <strong>📍 Location:</strong> Lusikisiki, Eastern Cape
-                            </div>
-                            <div class="project-detail">
-                                <strong>📅 Year:</strong> 2020-2021
-                            </div>
-                            <div class="project-detail">
-                                <strong>👥 Client:</strong> Brava Engineers
-                            </div>
-                            <div class="project-detail">
-                                <strong>🔨 Type:</strong> Commercial Office Complex
-                            </div>
+                            <span class="project-value">Contact for Details</span>
+                            <span class="project-year">2020-2021</span>
                         </div>
-                        <div class="project-value">Commercial Project</div>
-                        <a href="https://wa.me/27822698875?text=Hi%2C%20I%27m%20interested%20in%20commercial%20construction%20services.%20Can%20you%20provide%20details%20about%20office%20complex%20projects%3F" class="whatsapp-btn">💬 Commercial Quote</a>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20commercial%20construction%20services.%20Can%20you%20provide%20information%20about%20office%20complex%20construction?" class="btn btn-primary">Commercial Projects</a>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-image">🏪</div>
+
+                <div class="project-card" data-category="renovation" onclick="openModal('lusikisiki-renovation')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2017</div>
+                    </div>
                     <div class="project-content">
-                        <div class="project-category">Retail</div>
-                        <h3 class="project-title">Lusikisiki Cash and Carry</h3>
+                        <h3 class="project-title">Lusikisiki Cash and Carry Renovations</h3>
+                        <p class="project-client">Client: Dene Construction</p>
+                        <p class="project-description">Complete renovation of retail space including structural modifications, new flooring, ceiling work, electrical installations, and modern retail fixtures for improved customer experience.</p>
                         <div class="project-details">
-                            <div class="project-detail">
-                                <strong>📍 Location:</strong> Lusikisiki, Eastern Cape
-                            </div>
-                            <div class="project-detail">
-                                <strong>📅 Period:</strong> November 2016 - February 2017
-                            </div>
-                            <div class="project-detail">
-                                <strong>👥 Client:</strong> Dene Construction
-                            </div>
-                            <div class="project-detail">
-                                <strong>🔨 Scope:</strong> Complete Renovations (Labour Only)
-                            </div>
+                            <span class="project-value">R 656,000.00</span>
+                            <span class="project-year">2016-2017</span>
                         </div>
-                        <div class="project-value">Project Value: R 656,000</div>
-                        <a href="https://wa.me/27822698875?text=Hi%2C%20I%27m%20interested%20in%20retail%20space%20renovations.%20Can%20you%20provide%20a%20quote%20for%20commercial%20renovation%20work%3F" class="whatsapp-btn">💬 Renovation Quote</a>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20commercial%20renovation%20services.%20Can%20you%20provide%20a%20quote%20for%20retail%20space%20renovations?" class="btn btn-primary">Renovation Quote</a>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-image">🎓</div>
+
+                <div class="project-card" data-category="schools" onclick="openModal('bushula-school')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="project-badge">Completed 2016</div>
+                    </div>
                     <div class="project-content">
-                        <div class="project-category">Educational</div>
                         <h3 class="project-title">Bushula Junior Secondary School</h3>
+                        <p class="project-client">Client: Bushula Junior Secondary School</p>
+                        <p class="project-description">Painting and plastering services for Bushula Junior Secondary School, including interior and exterior work to enhance the learning environment and protect school infrastructure.</p>
                         <div class="project-details">
-                            <div class="project-detail">
-                                <strong>📍 Location:</strong> Eastern Cape
-                            </div>
-                            <div class="project-detail">
-                                <strong>📅 Year:</strong> 2016
-                            </div>
-                            <div class="project-detail">
-                                <strong>👥 Client:</strong> Bushula Junior Secondary School
-                            </div>
-                            <div class="project-detail">
-                                <strong>🔨 Scope:</strong> Painting and Plastering (Labour Only)
-                            </div>
+                            <span class="project-value">R 137,000.00</span>
+                            <span class="project-year">2016</span>
                         </div>
-                        <div class="project-value">Project Value: R 137,000</div>
-                        <a href="https://wa.me/27822698875?text=Hi%2C%20I%27m%20interested%20in%20school%20maintenance%20services%20like%20painting%20and%20plastering.%20Can%20you%20provide%20a%20quote%3F" class="whatsapp-btn">💬 Maintenance Quote</a>
+                        <div class="project-actions">
+                            <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I'm%20interested%20in%20painting%20and%20plastering%20services.%20Can%20you%20provide%20quotes%20for%20school%20maintenance%20work?" class="btn btn-primary">Maintenance Services</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="projects-stats">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h3>R6M+</h3>
+                            <p>Total Project Value</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>8+</h3>
+                            <p>Major Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>100%</h3>
+                            <p>Client Satisfaction</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>0</h3>
+                            <p>Safety Incidents</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
 
-    <section class="stats-section">
-        <div class="container">
-            <h2>Project Statistics</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>R 6M+</h3>
-                    <p>Total Project Value</p>
-                </div>
-                <div class="stat-item">
-                    <h3>6+</h3>
-                    <p>Major Projects Completed</p>
-                </div>
-                <div class="stat-item">
-                    <h3>4</h3>
-                    <p>Provinces Covered</p>
-                </div>
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Client Satisfaction</p>
-                </div>
+            <div style="text-align: center; margin-top: 3rem; padding: 3rem; background: #f8f9fa; border-radius: 15px;">
+                <h3 style="font-family: 'Oswald', sans-serif; font-size: 2rem; margin-bottom: 1rem;">Ready to Start Your Project?</h3>
+                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">Join our satisfied clients and experience the ZGH Projects difference in quality construction services.</p>
+                <a href="https://wa.me/27822698875?text=Hi%20ZGH%20Projects,%20I%20would%20like%20to%20discuss%20starting%20a%20new%20construction%20project.%20Please%20contact%20me%20to%20schedule%20a%20consultation." class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Start Your Project Today</a>
             </div>
         </div>
     </section>
+
+    <!-- Modal Structure -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modalImage">
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h2 id="modalTitle"></h2>
+                <p id="modalClient"></p>
+                <p id="modalDescription"></p>
+                <div class="project-details">
+                    <span id="modalValue" class="project-value"></span>
+                    <span id="modalYear" class="project-year"></span>
+                </div>
+                <div class="project-actions">
+                    <a id="modalWhatsApp" href="#" class="btn btn-primary">Contact About This Project</a>
+                    <button onclick="closeModal()" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -561,11 +743,11 @@
                 <div class="footer-section">
                     <h3>Our Services</h3>
                     <ul>
-                        <li><a href="services.html">Building & Construction</a></li>
-                        <li><a href="services.html">Extensions & Alterations</a></li>
-                        <li><a href="services.html">Aluminium Windows & Doors</a></li>
-                        <li><a href="services.html">Tiling & Renovations</a></li>
-                        <li><a href="services.html">Architectural Designs</a></li>
+                        <li><a href="products.html">Building & Construction</a></li>
+                        <li><a href="products.html">Extensions & Alterations</a></li>
+                        <li><a href="products.html">Aluminium Windows & Doors</a></li>
+                        <li><a href="products.html">Tiling & Renovations</a></li>
+                        <li><a href="products.html">Architectural Designs</a></li>
                     </ul>
                 </div>
                 
@@ -584,7 +766,7 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="projects.html">Our Projects</a></li>
                         <li><a href="contact.html">Get Quote</a></li>
-                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Services</a></li>
                     </ul>
                     <p style="margin-top: 1rem;"><strong>Certifications:</strong></p>
                     <p>CIDB Level 4 • NHBRC Registered<br>Master Builders Association</p>
@@ -596,5 +778,99 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Project data for modal
+        const projectData = {
+            'siwali-admin': {
+                title: 'Siwali Senior Secondary Admin Block',
+                client: 'Client: Adopta School Foundation',
+                description: 'Complete construction of a modern administration block for Siwali Senior Secondary School in Lusikisiki. This project included multiple office spaces, meeting rooms, reception areas, and storage facilities. The building features modern architectural design with durable materials and finishes suitable for educational environments. All work was completed to NHBRC standards with proper electrical installations, plumbing, and safety features.',
+                value: 'R 1,800,000.00',
+                year: '2016',
+                image: 'https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                whatsapp: 'Hi ZGH Projects, I\'m interested in school construction projects similar to the Siwali Senior Secondary Admin Block. Can you provide details about educational facility construction services?'
+            },
+            'siwali-renovation': {
+                title: 'Siwali School Classroom Renovation',
+                client: 'Client: Adopta School Foundation',
+                description: 'Comprehensive renovation of 6 classrooms at Siwali Senior Secondary School. The project involved complete refurbishment including new ceiling installations, modern flooring, electrical upgrades, window replacements, and interior painting. Each classroom was equipped with proper lighting and ventilation systems to create an optimal learning environment for students.',
+                value: 'R 597,000.00',
+                year: '2016',
+                image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                whatsapp: 'Hi ZGH Projects, I need classroom renovation services similar to your Siwali School project. Please provide a quote for educational facility renovations.'
+            },
+            'sinalo-house': {
+                title: 'Double Storey House - Mr. Sinalo Ntabakazi',
+                client: 'Client: Private Residential',
+                description: 'Construction of a luxurious double-storey family home featuring modern architecture and premium finishes. The house includes 4 bedrooms, 3 bathrooms, open-plan living areas, modern kitchen with built-in appliances, double garage, and beautiful outdoor entertainment areas. Quality materials and craftsmanship throughout ensure durability and comfort.',
+                value: 'R 1,560,000.00',
+                year: '2021-2022',
+                image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                whatsapp: 'Hi ZGH Projects, I\'m interested in building a double-storey house similar to the Sinalo Ntabakazi project. Please provide information about residential construction services.'
+            }
+        };
+
+        function openModal(projectId) {
+            const project = projectData[projectId];
+            if (project) {
+                document.getElementById('modalTitle').textContent = project.title;
+                document.getElementById('modalClient').textContent = project.client;
+                document.getElementById('modalDescription').textContent = project.description;
+                document.getElementById('modalValue').textContent = project.value;
+                document.getElementById('modalYear').textContent = project.year;
+                document.getElementById('modalImage').style.backgroundImage = `url('${project.image}')`;
+                document.getElementById('modalWhatsApp').href = `https://wa.me/27822698875?text=${encodeURIComponent(project.whatsapp)}`;
+                document.getElementById('projectModal').style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Get selected category
+                const category = this.dataset.category;
+                
+                // Show/hide projects based on category
+                document.querySelectorAll('.project-card').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
 </body>
 </html>
