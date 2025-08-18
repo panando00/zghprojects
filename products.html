@@ -53,6 +53,35 @@
             letter-spacing: 2px;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -317,8 +346,45 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                width: 280px;
+                height: 100vh;
+                flex-direction: column;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                padding: 2rem 0;
+                gap: 0;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1.2rem 2rem;
+                margin: 0;
+                border-radius: 0;
+                font-size: 1.1rem;
+            }
+
+            .nav-links a:hover {
+                background: #f8f8f8;
+                padding-left: 2.5rem;
             }
 
             .hero-content h1 {
@@ -374,6 +440,14 @@
     <header>
         <nav class="container">
             <a href="index.html" class="logo">ZGH PROJECTS</a>
+            
+            <!-- Mobile Menu Button -->
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html" class="active">Services</a></li>
@@ -608,6 +682,31 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('nav')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
+
         // Filter functionality
         document.querySelectorAll('.filter-tab').forEach(tab => {
             tab.addEventListener('click', function(e) {
