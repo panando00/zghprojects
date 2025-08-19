@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ZGH Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: #f8f8f8;
+            color: #1a1a1a;
+        }
+
+        .nav-links a.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+            min-width: 30px;
+        }
+
+        .contact-details h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .contact-details p {
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: #1a1a1a;
+            color: #fff;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin: 4rem 0;
+            background: #f8f9fa;
+            padding: 3rem 0;
+            border-radius: 15px;
+        }
+
+        .map-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        .office-locations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .office-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .office-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .office-image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        /* Emergency Contact */
+        .emergency-contact {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .emergency-contact h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .emergency-contact p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .emergency-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-emergency {
+            background: #fff;
+            color: #1a1a1a;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-emergency:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.5rem;
+            background: #333;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                width: 280px;
+                height: 100vh;
+                flex-direction: column;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                padding: 2rem 0;
+                gap: 0;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1.2rem 2rem;
+                margin: 0;
+                border-radius: 0;
+                font-size: 1.1rem;
+            }
+
+            .nav-links a:hover {
+                background: #f8f8f8;
+                padding-left: 2.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .emergency-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .office-locations {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">ZGH PROJECTS</a>
+            
+            <!-- Mobile Menu Button -->
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>CONTACT US</h1>
+            <p>Get in touch with ZGH Projects for all your construction needs. We're here to help bring your vision to life.</p>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="contact-section">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3>Head Office - East London</h3>
+                            <p>06 Josepha Court, Longfellow Street</p>
+                            <p>Quigney, East London, 5201</p>
+                            <p>Eastern Cape, South Africa</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3>Johannesburg Office</h3>
+                            <p>6A Blockhouse Street</p>
+                            <p>Kempton Park, Johannesburg</p>
+                            <p>Gauteng, South Africa</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3>Phone Numbers</h3>
+                            <p>Office: <a href="tel:0430504100">043 050 4100</a></p>
+                            <p>Mobile: <a href="tel:0822698875">082 269 8875</a></p>
+                            <p>Project Manager: <a href="tel:0822898875">082 289 8875</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h3>Email Addresses</h3>
+                            <p>General: <a href="mailto:info@zghprojects.co.za">info@zghprojects.co.za</a></p>
+                            <p>Hermann Botha: <a href="mailto:engineerhermann@outlook.com">engineerhermann@outlook.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h3>Website & Social</h3>
+                            <p><a href="http://www.zghprojects.co.za">www.zghprojects.co.za</a></p>
+                            <p>WhatsApp: <a href="https://wa.me/27822698875">+27 82 269 8875</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Request a Quote</h2>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Required</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="building">Building & Construction</option>
+                                <option value="extensions">Extensions & Alterations</option>
+                                <option value="aluminium">Aluminium Windows & Doors</option>
+                                <option value="tiling">Floor & Wall Tiling</option>
+                                <option value="electrical">Electrical Services</option>
+                                <option value="design">Architectural Design</option>
+                                <option value="rental">Rental Unit Construction</option>
+                                <option value="renovations">Renovations</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">Project Location</label>
+                                <input type="text" id="location" name="location" placeholder="City, Province">
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Estimated Budget</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select budget range</option>
+                                    <option value="under-50k">Under R50,000</option>
+                                    <option value="50k-100k">R50,000 - R100,000</option>
+                                    <option value="100k-500k">R100,000 - R500,000</option>
+                                    <option value="500k-1m">R500,000 - R1,000,000</option>
+                                    <option value="over-1m">Over R1,000,000</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" required placeholder="Please describe your project requirements, timeline, and any specific details..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Send Quote Request</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="emergency-contact">
+                <h3>Need Urgent Assistance?</h3>
+                <p>For urgent construction matters or emergency repairs, contact us immediately through WhatsApp or phone.</p>
+                <div class="emergency-buttons">
+                    <a href="https://wa.me/27822698875?text=URGENT:%20I%20need%20immediate%20construction%20assistance" class="btn-emergency">📱 WhatsApp Now</a>
+                    <a href="tel:0822698875" class="btn-emergency">📞 Call Directly</a>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <div class="container">
+                    <h2>Our Offices</h2>
+                    <div class="office-locations">
+                        <div class="office-card">
+                            <div class="office-image" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                            <h3>East London Head Office</h3>
+                            <p>06 Josepha Court, Longfellow Street<br>Quigney, East London, 5201</p>
+                            <p><strong>Operating Hours:</strong><br>Mon-Fri: 7:00 AM - 5:00 PM<br>Sat: 8:00 AM - 1:00 PM</p>
+                        </div>
+                        <div class="office-card">
+                            <div class="office-image" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                            <h3>Johannesburg Office</h3>
+                            <p>6A Blockhouse Street<br>Kempton Park, Johannesburg</p>
+                            <p><strong>Operating Hours:</strong><br>Mon-Fri: 8:00 AM - 4:30 PM<br>Sat: By Appointment</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: #fff; border-radius: 10px;">
+                        <h3 style="font-family: 'Oswald', sans-serif; margin-bottom: 1rem;">Service Coverage</h3>
+                        <p style="color: #666; margin-bottom: 1rem;">We provide construction services across all 9 provinces of South Africa</p>
+                        <p><strong>Primary Coverage Areas:</strong> Eastern Cape, KwaZulu-Natal, Gauteng, Mpumalanga, North West, Limpopo, Free State, Northern Cape, Western Cape</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZGH Projects</h3>
+                    <p>Quality construction services across South Africa. From residential homes to commercial projects, we deliver excellence.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/27822698875">📱</a>
+                        <a href="mailto:info@zghprojects.co.za">✉️</a>
+                        <a href="tel:0430504100">📞</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="products.html">Building & Construction</a></li>
+                        <li><a href="products.html">Extensions & Alterations</a></li>
+                        <li><a href="products.html">Aluminium Windows & Doors</a></li>
+                        <li><a href="products.html">Tiling & Renovations</a></li>
+                        <li><a href="products.html">Architectural Designs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><strong>Head Office - East London</strong></p>
+                    <p>06 Josepha Court, Longfellow Street<br>Quigney, East London, 5201</p>
+                    <p>📞 043 050 4100</p>
+                    <p>📱 082 269 8875</p>
+                    <p>✉️ info@zghprojects.co.za</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Our Projects</a></li>
+                        <li><a href="contact.html">Get Quote</a></li>
+                        <li><a href="products.html">Services</a></li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Certifications:</strong></p>
+                    <p>CIDB Level 4 • NHBRC Registered<br>Master Builders Association</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZGH Projects (Pty) Ltd. All rights reserved. | Reg: 2016/067582/07</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('nav')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const firstName = formData.get('firstName');
+            const lastName = formData.get('lastName');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const service = formData.get('service');
+            const location = formData.get('location');
+            const budget = formData.get('budget');
+            const message = formData.get('message');
+            
+            // Create WhatsApp message
+            const whatsappMessage = `Hi ZGH Projects,
+
+            I would like to request a quote for construction services.
+
+            CONTACT DETAILS:
+            Name: ${firstName} ${lastName}
+            Email: ${email}
+            Phone: ${phone}
+
+            PROJECT DETAILS:
+            Service Required: ${service || 'Not specified'}
+            Location: ${location || 'Not specified'}
+            Budget Range: ${budget || 'Not specified'}
+
+            Message: ${message}
+
+            Please contact me to discuss this project further.
+
+            Thank you!`;
+
+            // Open WhatsApp with the message
+            const whatsappURL = `https://wa.me/27822698875?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappURL, '_blank');
+            
+            // Show success message
+            alert('Your quote request is being sent via WhatsApp. Please complete the message in WhatsApp to send it to ZGH Projects.');
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
