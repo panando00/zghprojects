@@ -243,11 +243,34 @@
         }
 
         .leader-image {
+            width: 300px;
             height: 300px;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             border-radius: 10px;
             background-image: url('images/leader.jpeg');
+            /* Fallback for when local image doesn't load */
+            background-color: #f0f0f0;
+        }
+
+        /* Fallback image if local image fails */
+        .leader-image::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Show fallback if main image fails to load */
+        .leader-image.fallback::after {
+            opacity: 1;
         }
 
         .leader-info h3 {
@@ -641,8 +664,14 @@
             }
 
             .leader-image {
-                height: 250px;
+                width: 100%;
+                max-width: 280px;
+                height: 280px;
                 margin: 0 auto;
+                /* Ensure the image shows on mobile */
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
             }
 
             .leader-contact {
@@ -738,6 +767,12 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+
+            .leader-image {
+                width: 100%;
+                max-width: 250px;
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -814,7 +849,7 @@
             <div class="leadership-section">
                 <h2>Leadership</h2>
                 <div class="leader-card">
-                    <div class="leader-image"></div>
+                    <div class="leader-image" id="leaderImage"></div>
                     <div class="leader-info">
                         <h3>Hermann Botha</h3>
                         <div class="leader-title">Managing Director & Project Manager</div>
@@ -1063,6 +1098,24 @@
             } else {
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
+        });
+
+        // Handle leader image loading with fallback
+        document.addEventListener('DOMContentLoaded', function() {
+            const leaderImage = document.getElementById('leaderImage');
+            
+            // Try to load the local image first
+            const img = new Image();
+            img.onload = function() {
+                // Local image loaded successfully
+                leaderImage.style.backgroundImage = "url('images/leader.jpeg')";
+            };
+            img.onerror = function() {
+                // Local image failed, use fallback
+                leaderImage.style.backgroundImage = "url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')";
+                leaderImage.classList.add('fallback');
+            };
+            img.src = 'images/leader.jpeg';
         });
 
         // Smooth scrolling for internal links
